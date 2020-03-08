@@ -7,8 +7,8 @@ pyautogui.PAUSE = 0.1
 
 #icon cordinates
 icon_loc ={'left': 260,'top':1345 , 'width':170, 'height':195}
-button_left = [921,1698]
-button_right = [173,1698]
+button_left = [180,1710]
+button_right = [896,1710]
 
 #이미지의 rgb 평균 계산하여 어떤 이미지인지 판별
 def compute_icon_type(img):
@@ -29,9 +29,9 @@ def compute_icon_type(img):
 def click(coords):
     pyautogui.moveTo(coords)
     pyautogui.mouseDown()
-    time.sleep(0.1)
+    time.sleep(0.03)
     pyautogui.mouseUp()
-
+    
 
 while True:
     
@@ -42,20 +42,20 @@ while True:
 
         ##attack left
         if icon == 'SWORD' :
-            print('attack left')
+            print('SWORD')
             click(button_left)
             
+        ##attack right
+        elif icon == 'BOMB' or icon == "POISON":
+            print('BOME or POISON')
+            click(button_right)
+        
         ##fiver
         elif icon == 'JEWEL':
-            print('fiver')
+            print('JEWEL')
             click(button_left)
 
-        ##attack right
-        elif icon != 'SWORD':#icon == 'BOMB' or icon == "POISON":
-            print('attack right')
-            click(button_right)
         else:
             print('err',icon)
-        
-        time.sleep(0.1)
-        
+            
+    time.sleep(0.1)

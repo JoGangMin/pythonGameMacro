@@ -6,7 +6,7 @@ import time
 pyautogui.PAUSE = 0.1
 
 #icon cordinates
-icon_loc ={'left': 260,'top':1345 , 'width':170, 'height':195}
+icon_loc ={'left': 250,'top':1345 , 'width':170, 'height':195}
 button_left = [180,1710]
 button_right = [896,1710]
 

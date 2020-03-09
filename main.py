@@ -3,12 +3,12 @@ import numpy as np
 import cv2, mss
 import time
 
-pyautogui.PAUSE = 0.1
+cycle = 0 #count game cycle
 
 #icon cordinates
 icon_loc ={'left': 260,'top':1345 , 'width':170, 'height':195}
-button_left = [921,1698]
-button_right = [173,1698]
+button_left = [180,1710]
+button_right = [896,1710]
 
 #이미지의 rgb 평균 계산하여 어떤 이미지인지 판별
 def compute_icon_type(img):
@@ -29,10 +29,10 @@ def compute_icon_type(img):
 def click(coords):
     pyautogui.moveTo(coords)
     pyautogui.mouseDown()
-    time.sleep(0.1)
+    time.sleep(0.03)
     pyautogui.mouseUp()
-
-
+    
+#Game start
 while True:
     
    #capture left
@@ -42,20 +42,31 @@ while True:
 
         ##attack left
         if icon == 'SWORD' :
-            print('attack left')
+            print('SWORD')
             click(button_left)
             
+        ##attack right
+        elif icon == 'BOMB' or icon == "POISON":
+            print('BOME or POISON')
+            click(button_right)
+        
         ##fiver
         elif icon == 'JEWEL':
-            print('fiver')
+            print('JEWEL')
             click(button_left)
 
-        ##attack right
-        elif icon != 'SWORD':#icon == 'BOMB' or icon == "POISON":
-            print('attack right')
-            click(button_right)
+        #go to main screen
         else:
-            print('err',icon)
-        
-        time.sleep(0.1)
-        
+            print('game over',icon)
+            time.sleep(6)
+            click([270,1466])
+            #restart game
+            time.sleep(6)
+            click([553,1722])
+            time.sleep(3)
+            cycle +=1
+            print(f'macro cycle : {cycle}')
+
+#TODO Start game
+                
+            
